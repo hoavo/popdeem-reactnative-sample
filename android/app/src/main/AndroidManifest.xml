@@ -2,6 +2,10 @@
   package="com.popdeemreactnativesample">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
       android:name=".MainApplication"
@@ -10,6 +14,32 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+      <meta-data
+        android:name="com.popdeem.sdk.ApiKey"
+        android:value="f788c257-3b7c-401c-8219-71ec7b73cdb9" />
+      <meta-data android:name="com.facebook.sdk.ApplicationId"
+        android:value="@string/facebook_app_id"/>
+
+      <meta-data android:name="com.facebook.sdk.ApplicationName"
+        android:value="@string/facebook_app_name" />
+      <provider android:authorities="com.facebook.app.FacebookContentProvider1528213564167350" 
+      android:name="com.facebook.FacebookContentProvider"
+      android:exported="true" />
+
+      <activity android:name="com.facebook.FacebookActivity"
+          android:configChanges=
+              "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+          android:label="@string/app_name" />
+      <activity
+          android:name="com.facebook.CustomTabActivity"
+          android:exported="true">
+          <intent-filter>
+              <action android:name="android.intent.action.VIEW" />
+              <category android:name="android.intent.category.DEFAULT" />
+              <category android:name="android.intent.category.BROWSABLE" />
+              <data android:scheme="@string/fb_login_protocol_scheme" />
+          </intent-filter>
+      </activity>
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"

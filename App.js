@@ -7,23 +7,38 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Button, NativeModules} from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
+const  RNPopdeem = NativeModules.RNPopdeem;
+RNPopdeem.initializeSDK()
 type Props = {};
 export default class App extends Component<Props> {
+   onPressLogin = ()=> {
+    RNPopdeem.pushSocialLogin(3)
+   }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <Text style={styles.welcome}>Welcome to Popdeem React Native Sample!</Text>
+        <View style={styles.line} />
+        <Button
+          onPress={this.onPressLogin}
+          title="Push Social Login"
+          color="#841584"
+          accessibilityLabel="Push Social Login"
+        />
+        <View style={styles.line} />
+        <Button
+          title="Push Popdeem Home"
+          color="#841584"
+          accessibilityLabel="Push Popdeem Home"
+        />
+        <View style={styles.line} />
+        <Button
+          title="Deliver Third Party Token"
+          color="#841584"
+          accessibilityLabel="Deliver Third Party Token"
+        />
       </View>
     );
   }
@@ -36,14 +51,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  line: {
+    marginBottom: 20,
+  }
 });
