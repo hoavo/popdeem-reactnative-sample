@@ -1,6 +1,7 @@
 package com.popdeemreactnativesample;
 
 import com.facebook.react.ReactActivity;
+import com.popdeem.sdk.uikit.fragment.multilogin.PDUISocialMultiLoginFragment;
 
 public class MainActivity extends ReactActivity {
 
@@ -11,5 +12,15 @@ public class MainActivity extends ReactActivity {
     @Override
     protected String getMainComponentName() {
         return "popdeemReactNativeSample";
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        PDUISocialMultiLoginFragment frag = (PDUISocialMultiLoginFragment) getSupportFragmentManager().findFragmentByTag("PDUISocialMultiLoginFragment");
+        if (frag != null) {
+            frag.onRequestPermissionsResult(90, permissions, grantResults);
+        }
     }
 }
